@@ -8,9 +8,6 @@ services:
     volumes:
       - books:/books
     environment:
-      - VIRTUAL_HOST=${DOCKER_CALIBRE_HOSTNAME}
-      - LETSENCRYPT_HOST=${DOCKER_CALIBRE_HOSTNAME}
-      - LETSENCRYPT_EMAIL=${DOCKER_LETSENCRYPT_EMAIL}
       - SSL_POLICY=Mozilla-Modern
       - VIRTUAL_PORT=8083
     networks:
