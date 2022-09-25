@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   app:
-    image: technosoft2000/calibre-web
+    image: linuxserver/calibre-web:0.6.19
     restart: always
     volumes:
       - books:/books
