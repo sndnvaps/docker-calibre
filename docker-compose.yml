@@ -3,18 +3,24 @@ version: '3.3'
 services:
 
   app:
-    image: linuxserver/calibre-web:0.6.19
+    image: johngong/calibre-web:latest
+    container_name: calibre-web
     restart: always
     volumes:
-      - books:/books
+      - /mnt/share0/sndnvaps/calibre/autoaddbooks:/autoaddbooks
+      - /mnt/share0/sndnvaps/calibre/config:/config
+      - /mnt/share0/sndnvaps/calibre/library:/library
     environment:
-      - SSL_POLICY=Mozilla-Modern
-      - VIRTUAL_PORT=8083
-    networks:
-      frontend:
-
-networks:
-  frontend:
-
-volumes:
-  books:
+      - UID=3000
+      - GID=3000
+      - CALIBRE_ASCII_FILENAME=false
+      - CALIBRE_WEB_LANGUAGE=zh_Hans_CN
+      - ENABLE_CALIBRE_SERVER=true
+      - CALIBRE_SERVER_WEB_LANGUAGE=zh_CN
+      - CALIBRE_SERVER_USER=admin
+      - CALIBRE_SERVER_PASSWORD=admin123
+      - TZ=Asia/Shanghai
+    ports:
+      - 8083:8083
+      - 8080:8080
+    network_mode: bridge
